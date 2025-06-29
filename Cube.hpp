@@ -18,7 +18,7 @@ class Cube {
   private: void scramble();
 
   public:
-  std::string printSequence(std::string);
+  void printSequence(std::string);
   void moves(std::string);
   void output();
   void R(int);
