@@ -5,22 +5,19 @@
 #include "OLL.hpp"
 #include "PLL.hpp"
 #include <iostream>
-using namespace std;
 
 std::string format(std::string);
 
 int main(int argc, char **argv) {
-    int** arr = new int*[9];
-    for(int i=0; i<9; i++){
-      arr[i] = new int[6];
-    }
-    for(int j=0; j<6; j++){
-      for(int i=0; i<9; i++){
-        cin >> arr[i][j];
-      }
-    }
 
-    Cube myCube(arr);
+  Cube myCube(false);
+    int scrambleNum = 0;
+    std::string argString;
+    while (std::getline(std::cin, argString)) {
+    ++scrambleNum;
+    std::string scramble = format(argString);
+    std::cout << "Scramble #" << scrambleNum << ": ";
+    myCube.moves(scramble);
     Cross::solveCross(myCube);
     std::cout << "Cross solved" << std::endl;
     Corners::solveCorners(myCube);
@@ -31,7 +28,7 @@ int main(int argc, char **argv) {
     std::cout << "OLL solved" << std::endl;
     PLL::solvePLL(myCube);
     std::cout << "PLL solved" << std::endl;
-  
+  }
   return 0;
 }
 

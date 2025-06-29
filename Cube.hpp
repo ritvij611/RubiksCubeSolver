@@ -10,7 +10,7 @@ class Cube {
   /* Set up Cube.
   If scramble set, call scramble.
   Else, set up a solved cube */
-  public: Cube(int**);
+  public: Cube(bool);
 
   /* By default scramble sets
   cubies to a random state,
@@ -18,7 +18,7 @@ class Cube {
   private: void scramble();
 
   public:
-  void printSequence(std::string);
+  std::string printSequence(std::string);
   void moves(std::string);
   void output();
   void R(int);

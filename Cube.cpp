@@ -1,16 +1,35 @@
 #include "Cube.hpp"
 #include <iostream>
-using namespace std;
 
-Cube::Cube(int** arr) {
+Cube::Cube(bool scrambled) {
 
   for (int sticker=0; sticker<9; ++sticker) {
     for (int side=0; side<6; ++side) {
-      Cube::cubies[sticker][side] = arr[sticker][side];
+      if (side==0) {
+        Cube::cubies[sticker][side] = 0; //White
+      }
+      else if(side==1) {
+        Cube::cubies[sticker][side] = 1; //Yellow
+      }
+      else if(side==2) {
+        Cube::cubies[sticker][side] = 2; //Red
+      }
+      else if(side==3) {
+        Cube::cubies[sticker][side] = 3; //Green
+      }
+      else if(side==4) {
+        Cube::cubies[sticker][side] = 4; //Orange
+      }
+      else if(side==5) {
+        Cube::cubies[sticker][side] = 5; //Blue
+      }
     }
   }
-}
 
+  if (scrambled) {
+    Cube::scramble();
+  }
+}
 void Cube::moves(std::string sequence) {
   std::string outputSequence = "";
   int sequenceLength = sequence.length();
@@ -37,95 +56,47 @@ void Cube::moves(std::string sequence) {
     }
   }
 
-  printSequence(sequence);
+  std::cout << printSequence(sequence) << std::endl;
   //output();
 }
 
-void Cube::printSequence(std::string sequence) {
+std::string Cube::printSequence(std::string sequence) {
   std::string newSequence;
   for (int i=0; i < sequence.length(); ++i) {
-      if ((sequence.length() > (i+2)) && (sequence[i] == sequence[i+1]) && (sequence[i] == sequence[i+2])){ // RRR -> R'
-        switch (sequence[i])
-        {
-        case 'R':
-          cout << "right face down\n";
-          break;
-        case 'L':
-          cout << "left face up\n";
-          break;
-        case 'F':
-          cout << "front face anti-clockwise\n";
-          break;
-        case 'B':
-          cout << "back face clockwise\n";
-          break;
-        case 'U':
-          cout << "up face right\n";
-          break;
-        case 'D':
-          cout << "down face left\n";
-          break;
-        
-        default:
-          break;
-        }
+    if (sequence.length() > (i+2)) {
+      if ((sequence[i] == sequence[i+1]) && (sequence[i] == sequence[i+2])){ // RRR -> R'
+        newSequence += sequence[i];
+        newSequence += "\'";
         i+=2;
       }
-      else if ((sequence.length() > (i+1)) && sequence[i] == sequence[i+1]) {
-        switch (sequence[i])
-        {
-        case 'R':
-          cout << "right face 180 degree\n";
-          break;
-        case 'L':
-          cout << "left face 180 degree\n";
-          break;
-        case 'F':
-          cout << "front face 180 degree\n";
-          break;
-        case 'B':
-          cout << "back face 180 degree\n";
-          break;
-        case 'U':
-          cout << "up face 180 degree\n";
-          break;
-        case 'D':
-          cout << "down face 180 degree\n";
-          break;
-        
-        default:
-          break;
-        }
-        i++;
+      else if (sequence[i] == sequence[i+1]) {
+        newSequence += sequence[i];
+        newSequence += "2";
+        i += 1;
       }
       else {
-        switch (sequence[i])
-        {
-        case 'R':
-          cout << "right face up\n";
-          break;
-        case 'L':
-          cout << "left face down\n";
-          break;
-        case 'F':
-          cout << "front face clockwise\n";
-          break;
-        case 'B':
-          cout << "back face anti-clockwise\n";
-          break;
-        case 'U':
-          cout << "up face left\n";
-          break;
-        case 'D':
-          cout << "down face right\n";
-          break;
-        
-        default:
-          break;
-        }
+        newSequence += sequence[i];
       }
     }
+    else if (sequence.length() > (i+1)) {
+      if (sequence[i] == sequence[i+1]) {
+        newSequence += sequence[i];
+        newSequence += "2";
+        i += 1;
+      }
+      else {
+        newSequence += sequence[i];
+      }
+    }
+    else {
+      newSequence += sequence[i];
+    }
 
+    newSequence += " ";
+
+  }
+
+  return newSequence;
 }
 
 void Cube::output() {
