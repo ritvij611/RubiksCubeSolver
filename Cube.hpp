@@ -2,7 +2,7 @@
 #define CUBE_H
 
 #include <iostream>
-
+using namespace std;
 class Cube {
 
   public: int cubies[9][6];
@@ -18,8 +18,8 @@ class Cube {
   private: void scramble();
 
   public:
-  std::string printSequence(std::string);
-  void moves(std::string);
+  string printSequence(string);
+  void moves(string);
   void output();
   void R(int);
   void L(int);

@@ -5,35 +5,36 @@
 #include "OLL.hpp"
 #include "PLL.hpp"
 #include <iostream>
+using namespace std;
 
-std::string format(std::string);
+string format(string);
 
 int main(int argc, char **argv) {
 
   Cube myCube(false);
     int scrambleNum = 0;
-    std::string argString;
-    while (std::getline(std::cin, argString)) {
+    string argString;
+    while (getline(cin, argString)) {
     ++scrambleNum;
-    std::string scramble = format(argString);
-    std::cout << "Scramble #" << scrambleNum << ": ";
+    string scramble = format(argString);
+    cout << "Scramble #" << scrambleNum << ": ";
     myCube.moves(scramble);
     Cross::solveCross(myCube);
-    std::cout << "Cross solved" << std::endl;
+    cout << "Cross solved" << endl;
     Corners::solveCorners(myCube);
-    std::cout << "Corners solved" << std::endl;
+    cout << "Corners solved" << endl;
     Edges::solveEdges(myCube);
-    std::cout << "Edges solved" << std::endl;;
+    cout << "Edges solved" << endl;;
     OLL::solveOLL(myCube);
-    std::cout << "OLL solved" << std::endl;
+    cout << "OLL solved" << endl;
     PLL::solvePLL(myCube);
-    std::cout << "PLL solved" << std::endl;
+    cout << "PLL solved" << endl;
   }
   return 0;
 }
 
-std::string format(std::string s) {
-  std::string formatted;
+string format(string s) {
+  string formatted;
 
   for (int i=0; i<s.length(); ++i) {
     if (s[i] == '\'') {

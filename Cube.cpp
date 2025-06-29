@@ -30,8 +30,8 @@ Cube::Cube(bool scrambled) {
     Cube::scramble();
   }
 }
-void Cube::moves(std::string sequence) {
-  std::string outputSequence = "";
+void Cube::moves(string sequence) {
+  string outputSequence = "";
   int sequenceLength = sequence.length();
   for (int i=0; i<sequenceLength; ++i) {
     switch (sequence[i]) {
@@ -56,12 +56,12 @@ void Cube::moves(std::string sequence) {
     }
   }
 
-  std::cout << printSequence(sequence) << std::endl;
+  cout << printSequence(sequence) << endl;
   //output();
 }
 
-std::string Cube::printSequence(std::string sequence) {
-  std::string newSequence;
+string Cube::printSequence(string sequence) {
+  string newSequence;
   for (int i=0; i < sequence.length(); ++i) {
     if (sequence.length() > (i+2)) {
       if ((sequence[i] == sequence[i+1]) && (sequence[i] == sequence[i+2])){ // RRR -> R'
@@ -100,53 +100,53 @@ std::string Cube::printSequence(std::string sequence) {
 }
 
 void Cube::output() {
-  std::cout << "White:" << std::endl;
+  cout << "White:" << endl;
   for (int i=0; i<9; i+=0) {
     for (int j=0; j<3; ++j) {
-      std::cout << cubies[i][0];
+      cout << cubies[i][0];
       ++i;
     }
-    std::cout << std::endl;
+    cout << endl;
   }
-  std::cout << "Yellow:" << std::endl;
+  cout << "Yellow:" << endl;
   for (int i=0; i<9; i+=0) {
     for (int j=0; j<3; ++j) {
-      std::cout << cubies[i][1];
+      cout << cubies[i][1];
       ++i;
     }
-    std::cout << std::endl;
+    cout << endl;
   }
-  std::cout << "Red:" << std::endl;
+  cout << "Red:" << endl;
   for (int i=0; i<9; i+=0) {
     for (int j=0; j<3; ++j) {
-      std::cout << cubies[i][2];
+      cout << cubies[i][2];
       ++i;
     }
-    std::cout << std::endl;
+    cout << endl;
   }
-  std::cout << "Green:" << std::endl;
+  cout << "Green:" << endl;
   for (int i=0; i<9; i+=0) {
     for (int j=0; j<3; ++j) {
-      std::cout << cubies[i][3];
+      cout << cubies[i][3];
       ++i;
     }
-    std::cout << std::endl;
+    cout << endl;
   }
-  std::cout << "Orange:" << std::endl;
+  cout << "Orange:" << endl;
   for (int i=0; i<9; i+=0) {
     for (int j=0; j<3; ++j) {
-      std::cout << cubies[i][4];
+      cout << cubies[i][4];
       ++i;
     }
-    std::cout << std::endl;
+    cout << endl;
   }
-  std::cout << "Blue:" << std::endl;
+  cout << "Blue:" << endl;
   for (int i=0; i<9; i+=0) {
     for (int j=0; j<3; ++j) {
-      std::cout << cubies[i][5];
+      cout << cubies[i][5];
       ++i;
     }
-    std::cout << std::endl;
+    cout << endl;
   }
 
 }
